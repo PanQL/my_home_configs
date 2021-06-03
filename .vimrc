@@ -160,7 +160,7 @@ call plug#begin(get(g:, 'bundle_home', '~/.vim/bundles'))
 
 " 颜色主题安装
 Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 
 " 文本对齐，使用命令 Tabularize
 " 最常见情景是用于获得对齐的注释，命令为:Tabularize
@@ -216,11 +216,6 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-autocmd vimenter * ++nested colorscheme gruvbox
-" 设置背景色与终端颜色一致（为了透明终端下使用透明背景）
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
-" 设置特殊字符的显示背景色与终端一致（为了透明终端下使用透明背景）
-autocmd vimenter * hi SpecialKey cterm=NONE ctermfg=darkgray ctermbg=NONE
 " gruvbox颜色主题设置
 let g:gruvbox_transparent_bg=1
 let g:gruvbox_termcolors=256
@@ -228,7 +223,11 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_invert_signs=1
 let g:gruvbox_improved_strings=1
-colorscheme gruvbox
+autocmd vimenter * ++nested colorscheme gruvbox8
+" 设置背景色与终端颜色一致（为了透明终端下使用透明背景）
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
+" 设置特殊字符的显示背景色与终端一致（为了透明终端下使用透明背景）
+autocmd vimenter * hi SpecialKey cterm=NONE ctermfg=darkgray ctermbg=NONE
 
 " END:颜色主题：色彩文件位于 colors 目录中
 "----------------------------------------------------------------------
@@ -250,7 +249,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_powerline_fonts = 0
 let g:airline_exclude_preview = 1
 let g:airline_section_b = '%n'
-let g:airline_theme='gruvbox'
+let g:airline_theme='gruvbox8'
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#fugitiveline#enabled = 0
