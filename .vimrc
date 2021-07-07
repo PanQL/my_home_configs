@@ -194,6 +194,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 "对选中部分进行注释/取消注释。Leader-cc/Leader-cu
 Plug 'preservim/nerdcommenter'
+"基于popup的ui插件，主要用于快速预览
+Plug 'skywind3000/vim-quickui'
 call plug#end()
 " END: 插件安装
 "----------------------------------------------------------------------
@@ -294,6 +296,26 @@ noremap <leader>rd :call LanguageClient#textDocument_definition()<cr>
 noremap <leader>rr :call LanguageClient#textDocument_references()<cr>
 noremap <leader>rv :call LanguageClient#textDocument_hover()<cr>
 "END: lsp插件
+"----------------------------------------------------------------------
+
+"----------------------------------------------------------------------
+" BEGIN:quickui插件设置
+"quickui颜色主题
+let g:quickui_color_scheme = 'gruvbox'
+let g:quickui_border_style = 2
+"设置quickfix预览
+let g:quickui_preview_w = 90
+let g:quickui_preview_h = 40
+augroup MyQuickfixPreview
+  au!
+  au FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
+  au FileType qf noremap <silent><buffer> f :call quickui#preview#scroll(20)<cr>
+  au FileType qf noremap <silent><buffer> b :call quickui#preview#scroll(-20)<cr>
+augroup END
+"使用leader-be来进行buffer切换(到当前窗口），leader-bt新开一个tab来显示
+noremap <leader>be :call quickui#tools#list_buffer('e')<cr>
+noremap <leader>bt :call quickui#tools#list_buffer('tabedit')<cr>
+" END:quickui插件设置
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
