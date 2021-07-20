@@ -196,6 +196,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'preservim/nerdcommenter'
 "基于popup的ui插件，主要用于快速预览
 Plug 'skywind3000/vim-quickui'
+"用于快速移动的插件
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 " END: 插件安装
 "----------------------------------------------------------------------
@@ -319,6 +321,17 @@ noremap <leader>bt :call quickui#tools#list_buffer('tabedit')<cr>
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
+" BEGIN:vim-easymotion插件设置
+map <space>l <Plug>(easymotion-lineforward)
+map <space>j <Plug>(easymotion-j)
+map <space>k <Plug>(easymotion-k)
+map <space>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+" END:vim-easymotion插件设置
+"----------------------------------------------------------------------
+
+"----------------------------------------------------------------------
 " BEGIN:自定义的键位绑定
 " 窗口切换：ALT+SHIFT+hjkl
 " 传统的 CTRL+hjkl 移动窗口不适用于 vim 8.1 的终端模式，CTRL+hjkl 在
@@ -331,9 +344,6 @@ inoremap <m-H> <esc><c-w>h
 inoremap <m-L> <esc><c-w>l
 inoremap <m-J> <esc><c-w>j
 inoremap <m-K> <esc><c-w>k
-
-" 切换相对行号显示。在normal模式下使用CTRL-l来切换显示/不显示相对行号。
-noremap <c-l> :set relativenumber!<cr>
 
 " ALT+N 切换 tab
 noremap <silent><m-1> :tabn 1<cr>
